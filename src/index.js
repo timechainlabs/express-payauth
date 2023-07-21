@@ -125,6 +125,10 @@ const buildPaymailRouter = (baseUrl, config) => {
     capabilities[CapabilityCodes.assetInformation] = joinUrls(baseUrl.href, getBaseRoute(config), '/asset/{alias}@{domain.tld}')
   })
 
+  capabilities['userDomain'] = joinUrls(baseUrl.href, getBaseRoute(config), '/oauth/{user}@{domain.tld}');
+  capabilities['userDomainResponse'] = joinUrls(baseUrl.href, getBaseRoute(config), '/oauth/response/{app}@{domain.tld}');
+  capabilities['userInfo']= joinUrls(baseUrl.href, getBaseRoute(config), '/payauth/userinfo/{user}@{domain.tld}');
+
   baseRouter.get('/.well-known/bsvalias', asyncHandler(async (req, res) => {
     res.type('application/json')
     res.send({
