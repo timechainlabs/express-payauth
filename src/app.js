@@ -25,12 +25,14 @@ const paymailRouter = buildRouter(BASE_URL, {
 });
 
 const app = express();
-app.use(paymailRouter);
+app.use(express.json());
+// app.use(paymailRouter);
 const userAuthRouter = require("./router/userAuthRouter.js");
 app.use("/api/bsvalias", userAuthRouter);
 
-app.use("/", (req, res) => res.send("hijmunuhi"));
+// app.use("/", (req, res) => res.send("hijmunuhi"));
 
-app.listen("8080", () => {
-  console.log("Listening on port .");
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
+  console.log(`App listening on the port: ${port}`);
 });
